@@ -35,7 +35,7 @@ All are directed to in the code. Strategy outputs includes the exported raster f
 3. Additional dataset inputs
 4. Additional dataset outputs
 5. temp files
-6. Strategy outputs
+6. Solution outputs
 All folders are directed to within the code. 
 
 
