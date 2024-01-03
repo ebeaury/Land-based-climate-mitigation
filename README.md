@@ -1,6 +1,10 @@
 # Land-based-climate-mitigation
 Data and code associated with 'Global spatial potential for land-based climate mitigation'.
 
+Authors: Evelyn Beaury*, Jeffrey Smith, Jonathan Levine.
+
+*lead and corresponding author, eve.beaury@gmail.com or evelynbeaury@princeton.edu
+
 All data files are provided for working through the code to derive binary 1km maps for each of 19 land-based climate mitigation strategies. Download links for original data inputs and detailed methods are  described in the manuscript and supporting information, which is under review (1/3/2024) and available on bioRxiv: .
 
 Code is ordered:
