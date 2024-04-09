@@ -7,6 +7,10 @@ Authors: Evelyn Beaury*, Jeffrey Smith, Jonathan Levine.
 
 All data files are linked for working through the code to derive binary 1km maps for each of 19 land-based climate mitigation strategies. Download links for original data inputs and detailed methods are described in the manuscript and supporting information, which is under review (1/3/2024) and available on bioRxiv: https://doi.org/10.1101/2024.01.04.574063.
 
+# Strategy output maps
+Beaury, Evelyn (2024). Strategy maps. figshare. Dataset. https://doi.org/10.6084/m9.figshare.24933312.v1
+Figshare zip folder containing 1km resolution binary output maps for each mitigation strategy
+
 # R files
 
 ## base habitat types.R
