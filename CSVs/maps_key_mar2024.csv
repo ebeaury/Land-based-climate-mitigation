@@ -1,0 +1,20 @@
+Type,Solution,AbbrSolution,File,Cflux,UpperMha,LowerMha,Cflux_bin,km2,Mha,Earth_perc
+Maintain,Maintain forests,avoidforest,avoidforestconversion_25mar2024.tif,109.58,2718,1461,100,9987653.075,998.7653075,6.658435384
+Maintain,Maintain grasslands,avoidgrass,avoidgrasslandconversion_25mar2024.tif,18.65,5250,369,15,26667654.39,2666.765439,17.77843626
+Maintain,Maintain wetlands,avoidwet,avoidwetlandconversion_25mar2024.tif,152.02,40,2.2,100,1493725.841,149.3725841,0.995817228
+Maintain,Maintain peatlands,avoidpeat,avoidpeatlandconversion_25mar2024.tif,266.68,460,219,200,2198050.893,219.8050893,1.465367262
+Modify,Natural forest management,nfm,naturalforestmanagement_25mar2024.tif,0.21,2210,1452,0.5,16582612.54,1658.261254,11.05507503
+Modify,Improved plantations,plantations,improvedplantations_25mar2024.tif,0.47,284,82,0.5,4186619.515,418.6619515,2.791079677
+Modify,Cropland nutrient management,nutrients,croplandnutrient_25mar2024.tif,0.27,1515,751,0.5,17386364.37,1738.636437,11.59090958
+Modify,Improved rice cultivation,rice,improvedrice_25mar2024.tif,0.44,166,163,0.5,1622746.99,162.274699,1.081831327
+Modify,Trees in croplands,integr_trees,integratetreescroplands_25mar2024.tif,0.37,608,417,0.5,5467500.678,546.7500678,3.645000452
+Modify,Silvopasture,silvo,silvopasture_25mar2024.tif,2.7,772,72,5,820874.1473,82.08741473,0.547249432
+Modify,Legumes in pastures,legumes,legumesinpasture_25mar2024.tif,0.56,550,72,0.5,1662178.625,166.2178625,1.108119083
+Modify,Biochar,biochar,biochar_25mar2024.tif,0.2,1515,751,0.5,14932009.9,1493.20099,9.954673269
+Modify,Enhanced weathering,ew,enhancedweathering_25mar2024.tif,7,5556,661,5,12667303.69,1266.730369,8.444869129
+Restore,Coastal wetland restoration,wetrestoration,coastalwetlandrestoration_25mar2024.tif,4.71,17,9,5,72473.67097,7.247367097,0.048315781
+Restore,Peatland restoration,peatrestoration,peatlandrestoration_25mar2024.tif,4.79,81,46,5,468702.4824,46.87024824,0.312468322
+Restore,Grassland restoration,grassrestoration,grasslandrestoration_25mar2024.tif,1.5,2560,189,0.5,9262795.037,926.2795037,6.175196691
+Restore,Reforestation,reforestation,reforestation_25mar2024.tif,4.14,2000,678,5,8836422.999,883.6422999,5.890948666
+Convert,Afforestation,afforestation,afforestation_25mar2024.tif,3.3,1600,174,5,8001013.422,800.1013422,5.334008948
+Convert,BECCS,BECCS,beccs_25mar2024.tif,6.7,2500,400,5,8805222.964,880.5222964,5.870148643
