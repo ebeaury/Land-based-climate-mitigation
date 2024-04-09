@@ -1,0 +1,16 @@
+## map_key_mar2024.csv
+# Contains list of strategies, C flux, and area suitable for each
+# File is used to call strategies in code
+
+## globalmatrix_mar2024.csv
+# Matrix set-up for corrplot (Figure 4B, main text)
+# Proportional overlap of focal strategy on area for intersecting strategy
+# Negative values = compatible strategies
+
+## summed_freqs_wide_mar2024.csv
+# Output dataframe for stacked maps of individual strategies - created by total potential.R, used to create global corrplot
+# Notes the area and pixel frequency for each unique combination of strategies
+  # Solution = ID associated with each strategy that corresponds to Area (in km) and ObsFreq (number of pixels)
+  # Order = Number of strategies that apply
+  # Solution_chr = list of abbreviated solutions, corresponds to map_key
+  # Remaining columns indicate if each solution/strategy applies (1 = suitable, 0 = unsuitable)
