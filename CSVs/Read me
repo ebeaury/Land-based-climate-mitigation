@@ -2,6 +2,10 @@
 # Contains list of strategies, C flux, and area suitable for each
 # File is used to call strategies in code
 
+## globcorrplot_data.csv
+# Data used to create Figure 4 in main text
+# Absolute and proportional overlap between each pair of strategies
+
 ## globalmatrix_mar2024.csv
 # Matrix set-up for corrplot (Figure 4B, main text)
 # Proportional overlap of focal strategy on area for intersecting strategy
