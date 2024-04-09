@@ -5,12 +5,7 @@ Authors: Evelyn Beaury*, Jeffrey Smith, Jonathan Levine.
 
 *lead and corresponding author, eve.beaury@gmail.com or evelynbeaury@princeton.edu
 
-All data files are provided for working through the code to derive binary 1km maps for each of 19 land-based climate mitigation strategies. Download links for original data inputs and detailed methods are  described in the manuscript and supporting information, which is under review (1/3/2024) and available on bioRxiv: .
-
-Code is ordered:
-1. base habitat types.R
-2. preprocessing.R
-3. strategy maps.R
+All data files are linked for working through the code to derive binary 1km maps for each of 19 land-based climate mitigation strategies. Download links for original data inputs and detailed methods are described in the manuscript and supporting information, which is under review (1/3/2024) and available on bioRxiv: https://doi.org/10.1101/2024.01.04.574063.
 
 # R files
 
@@ -26,17 +21,9 @@ Preprocessing additional input data layers prior to deriving maps for each mitig
 
 Final processing for creating a 1km map for each mitigation strategy, using base layers, additional input datasets, and any processing done prior to this step. Code is not necessarily sequential given layers are harmonzied with one another as they are created.
 
-# Data folders
+## threshold sensitivity.R
 
-All are directed to in the code. Strategy outputs includes the exported raster file for each individual mitigation strategy.
-
-1. Base layer inputs
-2. Base layer outputs
-3. Additional dataset inputs
-4. Additional dataset outputs
-5. temp files
-6. Solution outputs
-All folders are directed to within the code. 
+Plots showing change in area given discretizing continuous input files.
 
 
 
