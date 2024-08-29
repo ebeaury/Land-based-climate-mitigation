@@ -1,5 +1,5 @@
 ## Preprocessing data inputs
-# March 25, 2024
+# August 15, 2024
 
 library(dplyr)
 library(terra)
@@ -83,9 +83,8 @@ st_write(biome_sub, "Additional dataset inputs/Ecoregions2017/temperate_tropical
 biome = st_read("Additional dataset inputs/Ecoregions2017/Ecoregions2017.shp")
 biomerast = rasterize(biome, iucn, field="BIOME_NUM", background=0)
 plot(biomerast)
-# make a forest layer, excluding mangroves and boreal zone
-# include mediterranean forests, woodlands, scrub?
-forest = ifel(biomerast %in% c(1,2,3,4,5),1,0)
+# make a forest layer, excluding mangroves and tundra
+forest = ifel(biomerast %in% c(1,2,3,4,5,6),1,0)
 plot(forest)
 # make a non-forest layer
 grass = ifel(biomerast %in% c(7,8,9,10,12,13),1,0)
@@ -94,9 +93,9 @@ plot(grass)
 overlap = forest*grass
 freq(overlap) # no overlap
 # export
-writeRaster(forest, "Additional dataset inputs/Ecoregions2017/iucn_forestbiome.tif")
-writeRaster(grass, "Additional dataset inputs/Ecoregions2017/iucn_openbiome.tif")
-writeRaster(biomerast, "Additional dataset inputs/Ecoregions2017/iucn_allbiomes.tif")
+writeRaster(forest, "Additional dataset inputs/Ecoregions2017/iucn_forestbiome.tif", overwrite=TRUE)
+writeRaster(grass, "Additional dataset inputs/Ecoregions2017/iucn_openbiome.tif", overwrite=TRUE)
+writeRaster(biomerast, "Additional dataset inputs/Ecoregions2017/iucn_allbiomes.tif", overwrite=TRUE)
 
 
 ##### Mangrove loss data #####
@@ -202,6 +201,21 @@ treecov_iucn = project(treecov, iucn, method="bilinear")
 writeRaster(treecov_iucn, "Additional dataset outputs/iucn_hansentreecover_25sept2023.tif")
 
 
+##### Albedo data #####
+# Hasler, N., Williams, C. A., Denney, V. C., Ellis, P. W., Shrestha, S., Terasaki Hart, D. E., ... & Cook-Patton, S. C. (2024). Accounting for albedo change to identify climate-positive tree cover restoration. Nature Communications, 15(1), 2275.
+# https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/G17RXL
+# AlbedoOffset_005.tif
+albedo = rast("Additional dataset inputs/AlbedoOffset_005.tif")
+albedo  
+# project to iucn
+albedo_pj = project(albedo, iucn, method="bilinear")
+plot(albedo_pj, type="interval", breaks=c(-10000,0,25,50,75,100,10000))
+# identify areas where CO2e lost from albedo > CO2e gained from added forest cover (areas >100%)
+albedo_b = ifel(albedo_pj>100,1,0)
+#albedo_b[is.na(albedo_b)] = 1 # fill in no data values to account for pixel alignment from projecting
+plot(albedo_b)
+writeRaster(albedo_b, "Additional dataset outputs/iucn_alebdo_binary_15aug2024.tif", overwrite=TRUE)
+
 ##### Enhanced weathering ####
 # Bertagni, M. B. & Porporato, A. The Carbon-Capture Efficiency of Natural Water Alkalinization: Implications For Enhanced weathering. Science of The Total Environment 838, 156524 (2022).
 # Shared via personal communication
@@ -217,6 +231,7 @@ ew_b[is.na(ew_b)] = 0
 plot(ew_b)
 writeRaster(ew_b, "Additional dataset outputs/iucn_enhancedweathering_binary_25sept2023.tif")
 
+
 #### CCS basins ####
 # NETL, NATCARB Atlas Saline Basin 10km Grid (open access)
 # https://edx.netl.doe.gov/dataset/natcarb-atlas-saline-basin-10km-grid
@@ -225,18 +240,37 @@ writeRaster(ew_b, "Additional dataset outputs/iucn_enhancedweathering_binary_25s
 # https://certmapper.cr.usgs.gov/data/apps/we-data/
 # tps_geog.e00.shp
 global = st_read("Additional dataset inputs/tps_geogshp/tps_geog.shp")
-plot(global)
-global2 = st_union(global)
-plot(global2)
+plot(st_geometry(global))
+# define crs
+st_crs(global) = st_crs(iucn)
+# project to crs with meters
+robinson = "+proj=robin +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs +type=crs"
+global_t = st_transform(global, robinson)
+# add a 40 km buffer around the basins
+global_buff = st_buffer(global_t, 40000)
+plot(st_geometry(global_buff), col="red")
+plot(st_geometry(global_t), col="blue", add=T)
+# simplify
+global2 = st_union(global_buff)
+plot(st_geometry(global2))
 # north america
 na = st_read("Additional dataset inputs/RCSPSalineOutline/natcarb_saline_poly_v1502.shp")
-plot(na$geometry)
-na2 = st_union(na)
-plot(na2)
+plot(st_geometry(na))
+# define crs
+st_crs(na) = st_crs(iucn)
+# project
+na_t = st_transform(na, robinson)
+# buffer 40 km
+na_buff = st_buffer(na_t, 40000)
+plot(st_geometry(na_buff), col="red")
+plot(st_geometry(na_t), col="blue", add=T)
+# simplify
+na2 = st_union(na_buff)
+plot(st_geometry(na2))
 # merge
 all = st_union(global2, na2)
-#plot(all)
-st_write(all, "Additional dataset outputs/combined_ccs_basins.shp")
+#plot(st_geometry(all))
+st_write(all, "Additional dataset outputs/combined_ccs_basins_15aug2024.shp", append=FALSE)
 
 
 #### Bionenergy yield data ####
@@ -288,6 +322,9 @@ wdp_sub = wdp_sub[wdp_sub$PA_DEF==1]
 table(wdp_sub$IUCN_CAT)
 #wdp_ag = aggregate(wdp_sub, dissolve=TRUE)
 # mask to terrestrial landscapes
-world = vect(file.choose())
+# world countries
+# https://hub.arcgis.com/maps/esri::world-countries-generalized
+world = vect("Additional dataset inputs/World_Countries_(Generalized) (1)/World_Countries__Generalized_.shp")
 wdp_t = mask(wdp_sub, world)
+plot(wdp_t)
 writeVector(wdp_t, "Additional dataset inputs/WDPA/WDPA_Subset_I-IV.shp", overwrite=TRUE)

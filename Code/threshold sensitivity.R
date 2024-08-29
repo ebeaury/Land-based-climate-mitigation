@@ -14,6 +14,9 @@ theme_set(theme_bw())
 path = ""
 setwd(path)
 
+## Load any file with IUCN resolution
+iucn = rast("Base layer inputs/iucn_habitatclassification_fraction_lvl2__404_Grassland – Temperate__ver003.tif")
+
 ### Mangrove sensitivity
 ml_iucn = rast("Additional dataset outputs/iucn_mosaic_mangroveloss_1996t2000_1km.tif")
 quantile(values(ml_iucn, na.rm=T))
@@ -140,4 +143,3 @@ alldf %>% filter(value==1) %>%
   ggtitle("Improved rice sensisitivity")
 ggsave("Figures/1 march 2024/supporting/rice_sensitivity.png",
        plot = last_plot(), width=5, height=4)
-

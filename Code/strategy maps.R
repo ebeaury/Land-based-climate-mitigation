@@ -1,5 +1,5 @@
 ## Deriving maps for each climate mitigation strategy
-# Updates March 25
+# Updates August 15
 # Starting with base layers & harmonizing with additional datasets
 
 library(terra)
@@ -272,7 +272,10 @@ nfm = rast("Solution outputs/naturalforestmanagement_25mar2024.tif")
 plant = rast("Solution outputs/improvedplantations_25mar2024.tif")
 currentfor = max(forest_base, nfm, plant, na.rm=T)
 # remove from high tree potential
-tree2 = ifel(treepot == currentfor,0,treepot)
+tree_nofor = ifel(treepot == currentfor,0,treepot)
+# remove areas where CO2e lost from albedo change > CO2e gained from added forest cover
+albedo = rast("Additional dataset outputs/iucn_alebdo_binary_15aug2024.tif")
+tree2 = ifel(tree_nofor==albedo,0,tree_nofor)
 # differentiate reforestation and afforestation based on biome type
 f_biome = rast("Additional dataset inputs/Ecoregions2017/iucn_forestbiome.tif")
 o_biome = rast("Additional dataset inputs/Ecoregions2017/iucn_openbiome.tif")
@@ -311,8 +314,8 @@ refor5 = ifel(refor4==remove,0,refor4) # no effect
 afor5 = ifel(afor4==remove,0,afor4) # no effect
 
 # export
-writeRaster(refor5, "Solution outputs/reforestation_25mar2024.tif", overwrite=TRUE)
-writeRaster(afor5, "Solution outputs/afforestation_25mar2024.tif", overwrite=TRUE)
+writeRaster(refor5, "Solution outputs/reforestation_15aug2024.tif", overwrite=TRUE)
+writeRaster(afor5, "Solution outputs/afforestation_15aug2024.tif", overwrite=TRUE)
 
 ##### BECCS #####
 # load yield data
@@ -322,7 +325,8 @@ yield_bin = ifel(yield>0,1,0)
 yield_bin[is.na(yield_bin)] = 0
 #plot(yield_bin)
 # load ccs basins
-basins = st_read("Additional dataset outputs/combined_ccs_basins.shp")
+basins = st_read("Additional dataset outputs/combined_ccs_basins_15aug2024.shp")
+basins = st_transform(basins, st_crs(yield))
 # mask bioenergy yield to ccs
 beccs = mask(yield_bin, basins)
 #plot(beccs)
@@ -338,6 +342,6 @@ beccs3 = mask(beccs2, pa, inverse=TRUE)
 remove = rast("Base layer outputs/exclude_landcovers_26mar2024.tif")
 beccs4 = ifel(beccs3==remove,0,beccs3)
 # export
-writeRaster(beccs4, "Solution outputs/beccs_25mar2024.tif", overwrite=TRUE)
+writeRaster(beccs4, "Solution outputs/beccs_15aug2024.tif", overwrite=TRUE)
 
 
