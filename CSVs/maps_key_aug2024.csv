@@ -1,0 +1,20 @@
+Type,SolutionCorrplot,Solution,AbbrSolution,File,Cflux,UpperMha,LowerMha,Cflux_bin,km2,Mha,Earth_perc
+Maintain,Forest,Maintain forests,avoidforest,avoidforestconversion_25mar2024.tif,109.58,2718,1461,100,9696931.242,969.6931242,6.464620828
+Maintain,Grassland,Maintain grasslands,avoidgrass,avoidgrasslandconversion_25mar2024.tif,18.65,5250,369,15,26530856.18,2653.085618,17.68723746
+Maintain,Wetland,Maintain wetlands,avoidwet,avoidwetlandconversion_25mar2024.tif,152.02,40,2.2,100,1377855.386,137.7855386,0.918570258
+Maintain,Peatland,Maintain peatlands,avoidpeat,avoidpeatlandconversion_25mar2024.tif,266.68,460,219,200,2182861.901,218.2861901,1.455241267
+Modify,Forest mgmt,Natural forest management,nfm,naturalforestmanagement_25mar2024.tif,0.21,2210,1452,0.5,16549098.51,1654.909851,11.03273234
+Modify,Plantations,Improved plantations,plantations,improvedplantations_25mar2024.tif,0.47,284,82,0.5,4171407.486,417.1407486,2.780938324
+Modify,Nutrient mgmt,Cropland nutrient management,nutrients,croplandnutrient_25mar2024.tif,0.27,1515,751,0.5,17557362.21,1755.736221,11.70490814
+Modify,Rice,Improved rice cultivation,rice,improvedrice_25mar2024.tif,0.44,166,163,0.5,1620058.578,162.0058578,1.080039052
+Modify,Integrate trees,Trees in croplands,integr_trees,integratetreescroplands_25mar2024.tif,0.37,608,417,0.5,5494228.647,549.4228647,3.662819098
+Modify,Silvopasture,Silvopasture,silvo,silvopasture_25mar2024.tif,2.7,772,72,5,1150494.191,115.0494191,0.766996127
+Modify,Legumes,Legumes in pastures,legumes,legumesinpasture_25mar2024.tif,0.56,550,72,0.5,1855648.338,185.5648338,1.237098892
+Modify,Biochar,Biochar,biochar,biochar_25mar2024.tif,0.2,1515,751,0.5,15108386.56,1510.838656,10.07225771
+Modify,En. weathering,Enhanced weathering,ew,enhancedweathering_25mar2024.tif,7,5556,661,5,12757720.62,1275.772062,8.505147077
+Restore,Wetland,Coastal wetland restoration,wetrestoration,coastalwetlandrestoration_25mar2024.tif,4.71,17,9,5,62584.21012,6.258421012,0.041722807
+Restore,Peatland,Peatland restoration,peatrestoration,peatlandrestoration_25mar2024.tif,4.79,81,46,5,444319.7607,44.43197607,0.296213174
+Restore,Grassland,Grassland restoration,grassrestoration,grasslandrestoration_25mar2024.tif,1.5,2560,189,0.5,9532757.784,953.2757784,6.355171856
+Restore,Reforestation,Reforestation,reforestation,reforestation_15aug2024.tif,4.14,2000,678,5,10132214.99,1013.221499,6.754809992
+Convert,Afforestation,Afforestation,afforestation,afforestation_15aug2024.tif,3.3,1600,174,5,6026223.564,602.6223564,4.017482376
+Convert,BECCS,BECCS,BECCS,beccs_15aug2024.tif,6.7,2500,400,5,12720721.9,1272.07219,8.480481269
